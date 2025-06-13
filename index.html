@@ -13,13 +13,21 @@
         font-style: normal;
       }
 
+      @font-face {
+        font-family: "Aether-BMonoItalic";
+        src: url("fonts/Aether-BMonoItalic.woff2") format("woff2"),
+             url("fonts/Aether-BMonoItalic.woff") format("woff");
+        font-weight: 300;
+        font-style: italic;
+      }
+
       body {
         margin: 0;
         padding: 2rem;
         background-color: white;
         font-family: "Söhne Mono", monospace;
         color: black;
-        max-width: 700px;
+        max-width: 900px;
         margin-left: auto;
         margin-right: auto;
       }
@@ -36,16 +44,6 @@
         white-space: pre-line;
       }
 
-      section {
-        margin-top: 2rem;
-      }
-
-      details summary {
-        cursor: pointer;
-        color: #0077cc;
-        margin-bottom: 0.5rem;
-      }
-
       img {
         max-width: 100%;
         height: auto;
@@ -58,31 +56,48 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        background-color: white;
-        padding: 1rem;
-        border: 1px solid #ccc;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        background-color: transparent;
+        border: none;
+        box-shadow: none;
         z-index: 1000;
         animation: fadeIn 0.3s ease;
+        padding: 0;
       }
 
       #popup img {
-        max-width: 100%;
+        display: block;
+        width: 100%;
         height: auto;
+        margin: 0;
+        animation: rotate-shake 0.1s infinite ease-in-out;
+      }
+
+      #popup:hover img {
+        animation: none;
       }
 
       #popup .close {
+        
         position: absolute;
-        top: 5px;
-        right: 10px;
-        font-size: 1.2rem;
+        top: 10px;
+        right: 25px;
+        font-size: 3rem;
+        font-family: "Söhne Mono", monospace;
         cursor: pointer;
-        color: #888;
+        color: #999;
+        z-index: 1001;
+        animation: rotate-shake 0.1s infinite ease-in-out;
+      
+        font-family: "Aether-BMonoItalic", monospace;
       }
 
-      #popup .close:hover {
-        animation: shake 0.4s;
-        color: #000;
+      #popup .close::before {
+        content: "x";
+        font-family: "Aether-BMonoItalic", monospace;
+      }
+
+      #popup:hover .close {
+        animation: none;
       }
 
       #overlay {
@@ -96,12 +111,16 @@
         z-index: 999;
       }
 
-      @keyframes shake {
-        0% { transform: translateX(0); }
-        25% { transform: translateX(-5px); }
-        50% { transform: translateX(5px); }
-        75% { transform: translateX(-5px); }
-        100% { transform: translateX(0); }
+      @keyframes rotate-shake {
+        0% { transform: rotate(0deg); }
+        10% { transform: rotate(-8deg); }
+        20% { transform: rotate(8deg); }
+        30% { transform: rotate(-10deg); }
+        40% { transform: rotate(10deg); }
+        50% { transform: rotate(-6deg); }
+        60% { transform: rotate(6deg); }
+        70% { transform: rotate(0deg); }
+        100% { transform: rotate(0deg); }
       }
 
       @keyframes fadeIn {
@@ -120,38 +139,19 @@
     </script>
   </head>
   <body>
-    <h1 onclick="togglePopup()">Alex Fillat</h1>
+    <h1 onclick="togglePopup()" style="color: black; font-family: 'Aether-BMonoItalic', monospace; font-style: italic; font-weight: 300; text-decoration: underline;">Alex Fillat</h1>
 
     <div id="overlay" onclick="togglePopup()"></div>
     <div id="popup">
-      <span class="close" onclick="togglePopup()">&times;</span>
+      <span class="close" onclick="togglePopup()"></span>
       <img src="imatges/Photo Profile ALEX.png" alt="Foto de perfil d'Alex Fillat">
     </div>
 
     <p>
-Goods Manager and Brand Curator at canadacanada.com
+Ara mateix: Goods and Brand Curation at <a href="https://canadacanada.com" target="_blank" style="color: inherit; text-decoration: underline;">canadacanada.com</a>
 
-Creació i desenvolupament d’imaginaris a través
-d’objectes i productes promocionals amb vocació atemporal,
-sensibilitat editorial i esperit funcionalista.
-
-    <section>
-      <h2>Projecte 1: Fictici</h2>
-      <details>
-        <summary>Veure imatge</summary>
-        <img src="imatges/projecte-1.webp" alt="Projecte 1" loading="lazy" width="600" height="400">
-      </details>
-      <p>Disseny d'una peça promocional per a una campanya amb enfocament narratiu i acabat funcionalista.</p>
-    </section>
-
-    <section>
-      <h2>Projecte 2: Editorial Goods</h2>
-      <details>
-        <summary>Veure imatge</summary>
-        <img src="imatges/projecte-2.webp" alt="Projecte 2" loading="lazy" width="600" height="400">
-      </details>
-      <p>Col·lecció de peces per a publicació de caràcter heritage, amb producció acurada i formats atemporals.</p>
-    </section>
+En General: Creació i desenvolupament d’imaginaris a través d’objectes i productes promocionals amb vocació atemporal sensibilitat editorial i esperit funcionalista.
+    </p>
 
   </body>
 </html>
